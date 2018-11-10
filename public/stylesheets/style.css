@@ -6,6 +6,10 @@
 	padding: 50px;
 }
 
+img {
+	max-width: 1024px;
+}
+
 #header img{
 	width: 80px;
 }

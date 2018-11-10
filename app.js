@@ -3,6 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
+
+var app = express();
+
+mongoose.connect('mongodb://localhost:27017/inciativaVengadores', {
+  useNewUrlParser: true
+});
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -17,8 +24,6 @@ var cargosRouter = require('./routes/cargos');
 var abonosRouter = require('./routes/abonos');
 var pagarRouter = require('./routes/pagar');
 var facturasRouter = require('./routes/facturas');
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,7 +47,7 @@ app.use('/saldos', saldosRouter);
 app.use('/cargos', cargosRouter);
 app.use('/abonos', abonosRouter);
 app.use('/pagar', pagarRouter);
-app.use('/facturas', facturasRouter);
+app.use('/facturas/', facturasRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
